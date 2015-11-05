@@ -1,0 +1,29 @@
+{
+  "name": "jsreport-express",
+  "version": "0.0.1",
+  "description": "jsreport extension adding API and studio",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "jsreport"
+  ],
+  "license": "LGPL",
+  "dependencies": {
+    "async": "^1.5.0",
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "multer": "^1.1.0",
+    "node-dir": "^0.1.11",
+    "node.extend": "^1.1.5",
+    "q": "^1.4.1",
+    "serve-static": "^1.10.0",
+    "simple-odata-server": "^0.1.8",
+    "string": "^3.3.1",
+    "underscore": "^1.8.3"
+  },
+  "author": "Jan Blaha",
+  "devDependencies": {}
+}
