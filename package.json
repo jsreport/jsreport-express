@@ -5,6 +5,11 @@
   "scripts": {
     "test": "mocha test && standard"
   },
+  "homepage": "https://github.com/jsreport/jsreport-express",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jsreport/jsreport-express.git"
+  },
   "keywords": [
     "jsreport"
   ],
@@ -22,20 +27,20 @@
   },
   "license": "LGPL",
   "dependencies": {
-    "async": "^1.5.0",
-    "body-parser": "^1.14.1",
-    "cookie-parser": "^1.4.0",
-    "cors": "^2.7.1",
-    "ejs": "^2.3.4",
-    "express": "^4.13.3",
-    "multer": "^0.1.8",
-    "node-dir": "^0.1.11",
-    "node.extend": "^1.1.5",
-    "q": "^1.4.1",
-    "serve-static": "^1.10.0",
-    "simple-odata-server": "^0.1.8",
-    "string": "^3.3.1",
-    "underscore": "^1.8.3"
+    "async": "1.5.0",
+    "body-parser": "1.14.1",
+    "cookie-parser": "1.4.0",
+    "cors": "2.7.1",
+    "ejs": "2.3.4",
+    "express": "4.13.3",
+    "multer": "0.1.8",
+    "node-dir": "0.1.11",
+    "node.extend": "1.1.5",
+    "q": "1.4.1",
+    "serve-static": "1.10.0",
+    "simple-odata-server": "0.1.8",
+    "string": "3.3.1",
+    "underscore": "1.8.3"
   },
   "author": "Jan Blaha",
   "devDependencies": {
