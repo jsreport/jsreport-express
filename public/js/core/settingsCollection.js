@@ -57,7 +57,7 @@ define(["app", "jquery", "backbone", "core/basicModel"], function(app, $, Backbo
         var setting = app.settings.data[key];
         setting.value = value;
         var s = new SettingsModel(setting);
-        s.save({
+        s.save({}, {
             success: cb
         });
     };
