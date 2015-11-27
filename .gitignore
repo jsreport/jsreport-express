@@ -27,3 +27,9 @@ build/Release
 node_modules
 
 .idea
+
+public/js/app_built.js
+public/js/require_main_fixed.js
+public/css/built.css
+public/css/built_embed.css
+public/views/root_built.html

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "jsreport extension adding API and studio",
   "scripts": {
-    "test": "mocha test && standard"
+    "test": "mocha test && standard",
+    "prepublish": "grunt build"
   },
   "homepage": "https://github.com/jsreport/jsreport-express",
   "repository": {
@@ -51,11 +52,12 @@
     "grunt-contrib-cssmin": "^0.14.0",
     "grunt-contrib-requirejs": "^0.4.4",
     "grunt-text-replace": "^0.4.0",
-    "mocha": "^2.3.3",
-    "standard": "^5.3.1",
-    "supertest": "^1.1.0",
     "jsreport-core": "*",
     "jsreport-jsrender": "*",
-    "jsreport-templates": "*"
+    "jsreport-templates": "*",
+    "mocha": "^2.3.3",
+    "requirejs": "^2.1.22",
+    "standard": "^5.3.1",
+    "supertest": "^1.1.0"
   }
 }
