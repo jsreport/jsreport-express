@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "description": "jsreport extension adding API and studio",
   "scripts": {
-    "test": "mocha test && standard",
+    "test": "mocha test --timeout 5000 && standard",
     "prepublish": "grunt build"
   },
   "homepage": "https://github.com/jsreport/jsreport-express",
