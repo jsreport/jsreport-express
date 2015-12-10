@@ -1,6 +1,6 @@
 {
   "name": "jsreport-express",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "jsreport extension adding API and studio",
   "scripts": {
     "test": "mocha test --timeout 5000 && standard",
