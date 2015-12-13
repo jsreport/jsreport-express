@@ -55,16 +55,26 @@ define(["jquery"], function($) {
             var $dd = $(dd);
             if ($dd.attr("data-binding") != null) {
                 var path = $dd.attr("data-binding");
+                var btn = $dd.find('.dropdown-button');
+
+                function updateButtonText() {
+                    var li = $dd.find(".dropdown-menu [data-value='" + model.get(path) + "']");
+                    if (li.length) {
+                        btn.text(li.text());
+                    } else {
+                        btn.text(model.get(path));
+                    }
+                }
+
+                updateButtonText();
 
                 model.bind("change:" + path, function() {
-                    var btn = $dd.find('.dropdown-button');
-                    btn.text(model.get(path));
+                    updateButtonText();
                     btn.attr("data-value", model.get(path));
                     btn.trigger("change");
                 });
             }
         });
-
         $(view.el).find('.expandable-header').unbind();
         $(view.el).find('.expandable-header').on("click", function() {
             $(this).next().slideToggle({
