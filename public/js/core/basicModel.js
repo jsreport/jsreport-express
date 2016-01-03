@@ -22,6 +22,15 @@ define(["backbone", "jquery"], function (Backbone, $) {
             });
         },
 
+        parse: function(data) {
+            for (var key in data) {
+                if (key.indexOf("@odata") > -1) {
+                    delete data[key];
+                }
+            }
+            return data;
+        },
+
         toJSON: function () {
             var self = this;
             var json = Backbone.Model.prototype.toJSON.call(this);
