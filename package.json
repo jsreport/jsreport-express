@@ -39,7 +39,7 @@
     "node.extend": "1.1.5",
     "q": "1.4.1",
     "serve-static": "1.10.0",
-    "simple-odata-server": "0.1.8",
+    "simple-odata-server": "0.2.0",
     "string": "3.3.1",
     "underscore": "1.8.3"
   },
