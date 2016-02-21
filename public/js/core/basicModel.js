@@ -27,6 +27,11 @@ define(["backbone", "jquery"], function (Backbone, $) {
                 if (key.indexOf("@odata") > -1) {
                     delete data[key];
                 }
+
+                if (data[key]  && this.get(key) && this.get(key).isModel) {
+                    this.get(key).set(this.get(key).parse(data[key], { silent: true}));
+                    delete data[key]
+                }
             }
             return data;
         },
