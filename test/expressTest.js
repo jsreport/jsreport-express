@@ -18,12 +18,6 @@ describe('express', function () {
     }).fail(done)
   })
 
-  it('/html-templates should return 200', function (done) {
-    supertest(reporter.express.app)
-      .get('/html-templates')
-      .expect(200, done)
-  })
-
   it('/api/settings should return 200', function (done) {
     supertest(reporter.express.app)
       .get('/api/settings')
@@ -66,7 +60,7 @@ describe('express', function () {
   it('/api/report should parse data if string and  render report', function (done) {
     supertest(reporter.express.app)
       .post('/api/report')
-      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: '{ \"a\": \"foo\" }'})
+      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: '{ "a": "foo" }'})
       .expect(200, 'foo')
       .end(function (err, res) {
         if (err) {
@@ -82,7 +76,7 @@ describe('express', function () {
       .post('/api/report')
       .send({
         template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'},
-        data: '{ \"a\": \"foo\" }',
+        data: '{ "a": "foo" }',
         options: {'Content-Disposition': 'foo'}
       })
       .expect(200, 'foo')

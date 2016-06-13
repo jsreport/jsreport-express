@@ -1,10 +1,9 @@
 {
   "name": "jsreport-express",
-  "version": "0.3.2",
-  "description": "jsreport extension adding API and studio",
+  "version": "1.0.0",
+  "description": "jsreport extension adding API",
   "scripts": {
-    "test": "mocha test --timeout 5000 && standard",
-    "prepublish": "grunt build"
+    "test": "mocha test --timeout 5000 && standard"
   },
   "homepage": "https://github.com/jsreport/jsreport-express",
   "repository": {
@@ -15,49 +14,31 @@
     "jsreport"
   ],
   "standard": {
-    "ignore": [
-      "public/**"
-    ],
-    "globals": [
-      "describe",
-      "it",
-      "beforeEach",
-      "define",
-      "ace"
-    ]
+    "env": {
+      "node": true,
+      "mocha": true
+    }
   },
   "license": "LGPL",
   "dependencies": {
-    "async": "1.5.0",
-    "body-parser": "1.14.1",
-    "cookie-parser": "1.4.0",
+    "body-parser": "1.15.1",
+    "cookie-parser": "1.4.3",
     "cors": "2.7.1",
-    "ejs": "2.3.4",
-    "express": "4.13.3",
-    "multer": "0.1.8",
-    "node-dir": "0.1.11",
+    "express": "4.13.4",
     "node.extend": "1.1.5",
     "q": "1.4.1",
-    "serve-static": "1.10.0",
+    "serve-static": "1.11.0",
     "simple-odata-server": "0.2.0",
-    "string": "3.3.1",
     "underscore": "1.8.3"
   },
   "author": "Jan Blaha",
   "devDependencies": {
-    "eslint": "^1.9.0",
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-copy": "^0.8.2",
-    "grunt-contrib-cssmin": "^0.14.0",
-    "grunt-contrib-requirejs": "^0.4.4",
-    "grunt-text-replace": "^0.4.0",
+    "eslint": "2.11.1",
     "jsreport-core": "*",
     "jsreport-jsrender": "*",
     "jsreport-templates": "*",
-    "mocha": "^2.3.3",
-    "requirejs": "^2.1.22",
-    "standard": "^5.3.1",
-    "supertest": "^1.1.0"
+    "mocha": "2.5.3",
+    "standard": "7.1.2",
+    "supertest": "1.2.0"
   }
 }
