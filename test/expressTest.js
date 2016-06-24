@@ -90,9 +90,9 @@ describe('express', function () {
       })
   })
 
-  it('/odata/templates should return 200', function (done) {
+  it('/odata/$metadata should return 200', function (done) {
     supertest(reporter.express.app)
-      .get('/odata/templates')
+      .get('/odata/$metadata')
       .expect(200, done)
   })
 })
