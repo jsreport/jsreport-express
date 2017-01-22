@@ -33,7 +33,7 @@
   },
   "author": "Jan Blaha",
   "devDependencies": {
-    "cross-env": "3.1.4",
+    "cross-env": "2.0.1",
     "eslint": "3.14.0",
     "jsreport-core": "1.0.10",
     "jsreport-jsrender": "1.0.1",
