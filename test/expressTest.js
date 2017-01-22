@@ -1,21 +1,12 @@
 var supertest = require('supertest')
-var path = require('path')
-var Reporter = require('jsreport-core').Reporter
-var domain = require('domain')
+var Reporter = require('jsreport-core')
 
 describe('express', function () {
   var reporter
 
-  beforeEach(function (done) {
-    reporter = new Reporter({
-      rootDirectory: path.join(__dirname, '../')
-    })
-
-    reporter.init().then(function () {
-      process.domain = process.domain || domain.create()
-      process.domain.req = {}
-      done()
-    }).fail(done)
+  beforeEach(function () {
+    reporter = Reporter().use(require('../')()).use(require('jsreport-jsrender')())
+    return reporter.init()
   })
 
   it('/api/settings should return 200', function (done) {

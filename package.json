@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "jsreport extension adding API",
   "scripts": {
-    "test": "mocha test --timeout 5000 && standard"
+    "test": "cross-env DEBUG=jsreport mocha test --timeout 5000 && standard"
   },
   "homepage": "https://github.com/jsreport/jsreport-express",
   "repository": {
@@ -21,26 +21,30 @@
   },
   "license": "LGPL",
   "dependencies": {
-    "body-parser": "1.15.1",
+    "bluebird": "3.4.7",
+    "body-parser": "1.16.0",
     "cookie-parser": "1.4.3",
-    "cors": "2.7.1",
-    "express": "4.13.4",
-    "node.extend": "1.1.5",
-    "q": "1.4.1",
-    "serve-static": "1.11.0",
-    "simple-odata-server": "0.2.0",
+    "cors": "2.8.1",
+    "express": "4.14.0",
+    "node.extend": "1.1.6",
+    "serve-static": "1.11.1",
+    "simple-odata-server": "0.3.0",
     "underscore": "1.8.3"
   },
   "author": "Jan Blaha",
   "devDependencies": {
-    "eslint": "2.11.1",
-    "jsreport-core": "1.0.4",
+    "cross-env": "3.1.4",
+    "eslint": "3.14.0",
+    "jsreport-core": "1.0.10",
     "jsreport-jsrender": "1.0.1",
-    "mocha": "2.5.3",
-    "standard": "7.1.2",
-    "supertest": "1.2.0"
+    "mocha": "3.2.0",
+    "standard": "8.6.0",
+    "supertest": "2.0.1"
   },
   "files": [
-    "lib", "certificates", "index.js", "jsreport.config.js"
+    "lib",
+    "certificates",
+    "index.js",
+    "jsreport.config.js"
   ]
 }
