@@ -14,7 +14,7 @@
 
 And many others. Where some of them are working also without `jsreport-express` and some of them doesn't.  This extension is designed to be just a wrapper for ui and it doesn't work standalone. The minimal configuration requires at least [jsreport-templates](https://github.com/jsreport/jsreport-templates) to be installed.
 
-##jsreport-core
+## jsreport-core
 The following example shows how to start jsreport studio through express extension.
 ```js
 var jsreport = require('jsreport-core')();
@@ -24,7 +24,7 @@ jsreport.use(require('jsreport-express')({ httpPort: 2000}));
 jsreport.init();
 ```
 
-###Attach to existing express app
+### Attach to existing express app
 `jsreport-express` by default creates a new express.js application and starts to listen on specified port. In some cases you may rather use your own express.js app and just let `jsreport-express` to add specific routes to it. This can be done in the following way:
 ```js
 var express = require('express');
@@ -46,7 +46,7 @@ jsreport.init();
 app.listen(3000);  
 ```
 
-##jsreport
+## jsreport
 You can use the same technique in the full distribution of jsreport or with the auto discovered extensions:
 ```js
 var express = require('express');
@@ -67,7 +67,7 @@ jsreport.init();
 app.listen(3000);
 ```
 
-##Configuration
+## Configuration
 
 `jsreport-express` uses some options from the global configuration:
 
