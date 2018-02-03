@@ -78,4 +78,16 @@ describe('express', () => {
         res.body.value[0].name.should.be.eql('test')
       })
   })
+
+  it('should make it possible to add response.meta.headers', () => {
+    jsreport.beforeRenderListeners.add('test', (req, res) => {
+      res.meta.headers['Test'] = 'header'
+    })
+
+    return supertest(jsreport.express.app)
+      .post('/api/report')
+      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: '{ "a": "foo" }'})
+      .expect(200, 'foo')
+      .expect('Test', 'header')
+  })
 })
