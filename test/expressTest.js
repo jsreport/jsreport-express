@@ -92,7 +92,7 @@ describe('express', () => {
   })
 })
 
-describe.only('express with custom middleware', () => {
+describe('express with custom middleware', () => {
   let jsreport
 
   beforeEach(() => {
