@@ -91,3 +91,32 @@ describe('express', () => {
       .expect('Test', 'header')
   })
 })
+
+describe.only('express with custom middleware', () => {
+  let jsreport
+
+  beforeEach(() => {
+    jsreport = JsReport()
+      .use(require('../')())
+
+    jsreport.on('before-express-configure', (app) => app.use((req, res, next) => {
+      req.context = { foo: 'hello' }
+      next()
+    }))
+
+    return jsreport.init()
+  })
+
+  afterEach(() => jsreport.close())
+
+  it('should merge in req.context from previous middlewares', () => {
+    jsreport.beforeRenderListeners.add('test', (req, res) => {
+      req.template.content = req.context.foo
+    })
+
+    return supertest(jsreport.express.app)
+      .post('/api/report')
+      .send({template: {content: 'x', engine: 'none', recipe: 'html'}})
+      .expect(200, 'hello')
+  })
+})
