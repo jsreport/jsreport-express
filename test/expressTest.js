@@ -129,15 +129,15 @@ describe('express port', () => {
   afterEach(() => jsreport.close())
 
   it('should start on httpPort ', async () => {
-    jsreport = JsReport({ httpPort: 1000 })
+    jsreport = JsReport({ httpPort: 7000 })
       .use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.eql(1000)
+    jsreport.express.server.address().port.should.be.eql(7000)
   })
 
   it('should start on httpsPort ', async () => {
-    jsreport = JsReport({ httpsPort: 1000,
+    jsreport = JsReport({ httpsPort: 7000,
       certificate: {
         key: '../certificates/jsreport.net.key',
         cert: '../certificates/jsreport.net.cert'
@@ -145,11 +145,11 @@ describe('express port', () => {
     }).use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.eql(1000)
+    jsreport.express.server.address().port.should.be.eql(7000)
   })
 
   it('should start on httpsPort ', async () => {
-    jsreport = JsReport({ httpsPort: 1000,
+    jsreport = JsReport({ httpsPort: 7000,
       certificate: {
         key: '../certificates/jsreport.net.key',
         cert: '../certificates/jsreport.net.cert'
@@ -157,13 +157,13 @@ describe('express port', () => {
     }).use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.eql(1000)
+    jsreport.express.server.address().port.should.be.eql(7000)
   })
 
   it('should create redirect server when both httpsPort and httpPort specified', async () => {
     jsreport = JsReport({
-      httpsPort: 1000,
-      httpPort: 2000,
+      httpsPort: 7000,
+      httpPort: 8000,
       certificate: {
         key: '../certificates/jsreport.net.key',
         cert: '../certificates/jsreport.net.cert'
@@ -171,30 +171,30 @@ describe('express port', () => {
     }).use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.eql(1000)
-    jsreport.express.redirectServer.address().port.should.be.eql(2000)
+    jsreport.express.server.address().port.should.be.eql(7000)
+    jsreport.express.redirectServer.address().port.should.be.eql(8000)
   })
 
   it('should listen PORT env when specified', async () => {
-    process.env.PORT = 1000
+    process.env.PORT = 7000
     jsreport = JsReport().use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.eql(1000)
+    jsreport.express.server.address().port.should.be.eql(7000)
   })
 
   it('should prefer httpPort over PORT env', async () => {
-    process.env.PORT = 1000
-    jsreport = JsReport({httpPort: 2000}).use(require('../')())
+    process.env.PORT = 7000
+    jsreport = JsReport({httpPort: 8000}).use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.eql(2000)
+    jsreport.express.server.address().port.should.be.eql(8000)
   })
 
   it('should prefer httpsPort over PORT env', async () => {
-    process.env.PORT = 1000
+    process.env.PORT = 7000
     jsreport = JsReport({
-      httpsPort: 2000,
+      httpsPort: 8000,
       certificate: {
         key: '../certificates/jsreport.net.key',
         cert: '../certificates/jsreport.net.cert'
@@ -202,13 +202,13 @@ describe('express port', () => {
     }).use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.eql(2000)
+    jsreport.express.server.address().port.should.be.eql(8000)
   })
 
   it('should prefer httpsPort over PORT env', async () => {
-    process.env.PORT = 1000
+    process.env.PORT = 7000
     jsreport = JsReport({
-      httpsPort: 2000,
+      httpsPort: 8000,
       certificate: {
         key: '../certificates/jsreport.net.key',
         cert: '../certificates/jsreport.net.cert'
@@ -216,7 +216,7 @@ describe('express port', () => {
     }).use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.eql(2000)
+    jsreport.express.server.address().port.should.be.eql(8000)
   })
 
   it('should use random port when no port specified', async () => {
