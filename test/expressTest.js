@@ -67,7 +67,9 @@ describe('express', () => {
 
   it('/odata/templates?$filter=name eq test should return entity', async () => {
     await jsreport.documentStore.collection('templates').insert({
-      name: 'test'
+      name: 'test',
+      engine: 'none',
+      recipe: 'html'
     })
 
     return supertest(jsreport.express.app)
