@@ -106,6 +106,10 @@ describe('express with custom middleware', () => {
       next()
     }))
 
+    jsreport.on('express-configure', (app) => app.post('/test-error-middleware-propagation', (req, res, next) => {
+      next(new Error('error propagation'))
+    }))
+
     return jsreport.init()
   })
 
@@ -120,6 +124,16 @@ describe('express with custom middleware', () => {
       .post('/api/report')
       .send({template: {content: 'x', engine: 'none', recipe: 'html'}})
       .expect(200, 'hello')
+  })
+
+  it('should receive errors from custom middlewares', () => {
+    return supertest(jsreport.express.app)
+      .post('/test-error-middleware-propagation')
+      .send()
+      .expect(500)
+      .then(res => {
+        res.text.should.startWith('Error occured - error propagation')
+      })
   })
 })
 
