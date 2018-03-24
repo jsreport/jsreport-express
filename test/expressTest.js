@@ -43,7 +43,7 @@ describe('express', () => {
   it('/api/report should parse data if string and  render report', () => {
     return supertest(jsreport.express.app)
       .post('/api/report')
-      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: '{ "a": "foo" }'})
+      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: { "a": "foo" }})
       .expect(200, 'foo')
   })
 
@@ -52,7 +52,7 @@ describe('express', () => {
       .post('/api/report')
       .send({
         template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'},
-        data: '{ "a": "foo" }',
+        data: { "a": "foo" },
         options: {'Content-Disposition': 'foo'}
       })
       .expect(200, 'foo')
@@ -88,7 +88,7 @@ describe('express', () => {
 
     return supertest(jsreport.express.app)
       .post('/api/report')
-      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: '{ "a": "foo" }'})
+      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: { "a": "foo" }})
       .expect(200, 'foo')
       .expect('Test', 'header')
   })
