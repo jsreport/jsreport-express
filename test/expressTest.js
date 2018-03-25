@@ -132,7 +132,7 @@ describe('express with custom middleware', () => {
       .send()
       .expect(500)
       .then(res => {
-        res.text.should.startWith('Error occured - error propagation')
+        res.text.should.startWith('Error: error propagation')
       })
   })
 })
