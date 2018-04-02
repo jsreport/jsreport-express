@@ -28,7 +28,7 @@
     "express": "4.16.2",
     "node.extend": "2.0.0",
     "serve-static": "1.13.1",
-    "simple-odata-server": "1.0.0"
+    "simple-odata-server": "1.0.1"
   },
   "author": "Jan Blaha",
   "devDependencies": {
