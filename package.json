@@ -34,9 +34,9 @@
   "devDependencies": {
     "cross-env": "5.1.3",
     "eslint": "4.16.0",
-    "jsreport-core": "jsreport/jsreport-core#2.0.0-beta",
+    "jsreport-core": "github:jsreport/jsreport-core#2.0.0-beta",
     "jsreport-jsrender": "1.0.2",
-    "jsreport-templates": "jsreport/jsreport-templates#2.0.0-beta",
+    "jsreport-templates": "github:jsreport/jsreport-templates#2.0.0-beta",
     "mocha": "5.0.0",
     "should": "13.2.1",
     "standard": "10.0.3",
