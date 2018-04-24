@@ -22,9 +22,10 @@ module.exports = {
         type: 'object',
         properties: {
           ...schemaProperties,
-          trustProxy: { type: 'boolean' },
-          inputRequestLimit: { type: 'string' },
-          renderTimeout: { type: 'number' }
+          start: { type: 'boolean', default: true },
+          trustProxy: { type: 'boolean', default: true },
+          inputRequestLimit: { type: 'string', default: '20mb' },
+          renderTimeout: { type: 'number', default: 1200000 }
         }
       }
     }

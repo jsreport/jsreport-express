@@ -13,7 +13,9 @@ describe('express', () => {
     return jsreport.init()
   })
 
-  afterEach(() => jsreport.close())
+  afterEach(async () => {
+    await jsreport.close()
+  })
 
   it('/api/settings should return 200', () => {
     return supertest(jsreport.express.app)
@@ -113,7 +115,7 @@ describe('express with custom middleware', () => {
     return jsreport.init()
   })
 
-  afterEach(() => jsreport.close())
+  afterEach(async () => { await jsreport.close() })
 
   it('should merge in req.context from previous middlewares', () => {
     jsreport.beforeRenderListeners.add('test', (req, res) => {
@@ -140,7 +142,21 @@ describe('express with custom middleware', () => {
 describe('express port', () => {
   let jsreport
 
-  afterEach(() => jsreport.close())
+  afterEach(async () => {
+    if (process.env.PORT != null) {
+      delete process.env.PORT
+    }
+
+    await jsreport.close()
+  })
+
+  it('should not start on port automatically when option start: false', async () => {
+    jsreport = JsReport({ httpPort: 7000 })
+      .use(require('../')({ start: false }))
+
+    await jsreport.init()
+    jsreport.express.server.listening.should.be.eql(false)
+  })
 
   it('should start on httpPort ', async () => {
     jsreport = JsReport({ httpPort: 7000 })
@@ -233,10 +249,10 @@ describe('express port', () => {
     jsreport.express.server.address().port.should.be.eql(8000)
   })
 
-  it('should use random port when no port specified', async () => {
+  it('should use 5488 port when no port specified', async () => {
     jsreport = JsReport().use(require('../')())
 
     await jsreport.init()
-    jsreport.express.server.address().port.should.be.ok()
+    jsreport.express.server.address().port.should.be.eql(5488)
   })
 })
