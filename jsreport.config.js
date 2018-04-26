@@ -22,7 +22,11 @@ module.exports = {
         type: 'object',
         properties: {
           ...schemaProperties,
-          start: { type: 'boolean', default: true },
+          start: {
+            type: 'boolean',
+            default: true,
+            description: 'specifies if the server should be started automatically during jsreport initialization, if false you should start the server manually by using jsreport.express.start() after jsreport is initialized'
+          },
           trustProxy: { type: 'boolean', default: true },
           inputRequestLimit: { type: 'string', default: '20mb' },
           renderTimeout: { type: 'number', default: 1200000 }
