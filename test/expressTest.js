@@ -10,6 +10,20 @@ describe('express', () => {
       .use(require('../')())
       .use(require('jsreport-jsrender')())
       .use(require('jsreport-templates')())
+      .use({
+        name: 'test',
+        directory: __dirname,
+        main: function (reporter, definition) {
+          reporter.documentStore.registerEntityType('DemoType', {
+            _id: {type: 'Edm.String', key: true},
+            name: {type: 'Edm.String'},
+            secret: {type: 'Edm.String', visible: false}
+          })
+
+          reporter.documentStore.registerEntitySet('demos', {entityType: 'jsreport.DemoType', humanReadableKey: '_id'})
+        }
+      })
+
     return jsreport.init()
   })
 
@@ -80,6 +94,22 @@ describe('express', () => {
       .expect((res) => {
         res.body.value.should.have.length(1)
         res.body.value[0].name.should.be.eql('test')
+      })
+  })
+
+  it('/odata endpoint should not return non visible properties of entity', async () => {
+    await jsreport.documentStore.collection('demos').insert({
+      name: 'test',
+      secret: 'secret'
+    })
+
+    return supertest(jsreport.express.app)
+      .get(`/odata/demos`)
+      .expect(200)
+      .expect((res) => {
+        res.body.value.should.have.length(1)
+        res.body.value[0].name.should.be.eql('test')
+        res.body.value[0].should.not.have.property('secret')
       })
   })
 
