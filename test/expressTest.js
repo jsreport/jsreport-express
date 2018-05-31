@@ -104,7 +104,7 @@ describe('express', () => {
     })
 
     return supertest(jsreport.express.app)
-      .get(`/odata/demos`)
+      .get(`/odata/demos?$select=name`)
       .expect(200)
       .expect((res) => {
         res.body.value.should.have.length(1)
