@@ -1,6 +1,6 @@
 {
   "name": "jsreport-express",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "jsreport extension adding API",
   "scripts": {
     "test": "cross-env DEBUG=jsreport mocha test --timeout 5000 && standard"
