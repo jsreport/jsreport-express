@@ -104,7 +104,23 @@ describe('express', () => {
     })
 
     return supertest(jsreport.express.app)
-      .get(`/odata/demos?$select=name`)
+      .get(`/odata/demos`)
+      .expect(200)
+      .expect((res) => {
+        res.body.value.should.have.length(1)
+        res.body.value[0].name.should.be.eql('test')
+        res.body.value[0].should.not.have.property('secret')
+      })
+  })
+
+  it('/odata endpoint should not return non visible properties of entity and not fail when other $select set', async () => {
+    await jsreport.documentStore.collection('demos').insert({
+      name: 'test',
+      secret: 'secret'
+    })
+
+    return supertest(jsreport.express.app)
+      .get(`/odata/demos?$select=name,secret`)
       .expect(200)
       .expect((res) => {
         res.body.value.should.have.length(1)
