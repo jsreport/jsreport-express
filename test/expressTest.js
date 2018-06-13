@@ -142,6 +142,47 @@ describe('express', () => {
   })
 })
 
+describe('express with appPath config', () => {
+  let jsreport
+  beforeEach(() => {
+    jsreport = JsReport({ appPath: '/test' })
+      .use(require('../')())
+      .use(require('jsreport-jsrender')())
+      .use(require('jsreport-templates')())
+      .use({
+        name: 'test',
+        directory: __dirname,
+        main: function (reporter, definition) {
+          reporter.documentStore.registerEntityType('DemoType', {
+            _id: {type: 'Edm.String', key: true},
+            name: {type: 'Edm.String'},
+            secret: {type: 'Edm.String', visible: false}
+          })
+
+          reporter.documentStore.registerEntitySet('demos', {entityType: 'jsreport.DemoType', humanReadableKey: '_id'})
+        }
+      })
+
+    return jsreport.init()
+  })
+
+  afterEach(async () => {
+    await jsreport.close()
+  })
+
+  it('/test/api/settings should be return 200', async () => {
+    return supertest(jsreport.express.app)
+      .get('/test/api/settings')
+      .expect(200)
+  })
+
+  it('/api/settings should be return 404', async () => {
+    return supertest(jsreport.express.app)
+      .get('/api/settings')
+      .expect(404)
+  })
+})
+
 describe('express with custom middleware', () => {
   let jsreport
 
