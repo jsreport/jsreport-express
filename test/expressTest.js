@@ -142,10 +142,10 @@ describe('express', () => {
   })
 })
 
-describe('express with appPath config', () => {
+describe('express with subPath config', () => {
   let jsreport
   beforeEach(() => {
-    jsreport = JsReport({ appPath: '/test' })
+    jsreport = JsReport({ subPath: '/test' })
       .use(require('../')())
       .use(require('jsreport-jsrender')())
       .use(require('jsreport-templates')())
