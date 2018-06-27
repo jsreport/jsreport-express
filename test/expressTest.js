@@ -142,6 +142,34 @@ describe('express', () => {
   })
 })
 
+describe('express with appPath and mountOnAppPath config', () => {
+  let jsreport
+  beforeEach(() => {
+    jsreport = JsReport({ appPath: '/test', mountOnAppPath: true })
+      .use(require('../')())
+      .use(require('jsreport-jsrender')())
+      .use(require('jsreport-templates')())
+
+    return jsreport.init()
+  })
+
+  afterEach(async () => {
+    await jsreport.close()
+  })
+
+  it('/test/api/settings should return 200', async () => {
+    return supertest(jsreport.express.server)
+      .get('/test/api/settings')
+      .expect(200)
+  })
+
+  it('/api/settings should return 404', async () => {
+    return supertest(jsreport.express.server)
+      .get('/api/settings')
+      .expect(404)
+  })
+})
+
 describe('express with custom middleware', () => {
   let jsreport
 
