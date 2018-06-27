@@ -60,7 +60,7 @@ var reportingApp = express();
 app.use('/reporting', reportingApp);
 
 var jsreport = require('jsreport')({
-  express: { app :reportingApp } 
+  express: { app: reportingApp }
 });
 
 jsreport.init();
@@ -74,5 +74,9 @@ app.listen(3000);
 `httpPort` (number) - http port on which is jsreport running, if both httpPort and httpsPort are specified, jsreport will automaticaly create http redirects from http to https, if any of httpPort and httpsPort is specified default process.env.PORT will be used
 
 `httpsPort` (number) - https port on which jsreport is running
+
+`appPath` (string) - optionally set application path, if you run application on http://appdomain.com/reporting then set "/reporting" to `appPath`. The default behavior is that it is assumed that jsreport is running behind a proxy, so you need to do url url rewrite /reporting -> / to make it work correctly, See `mountOnAppPath` when there is no proxy + url rewrite involved in your setup.
+
+`mountOnAppPath` (boolean) - use this option along with `appPath`. it specifies if all jsreport routes should be available with appPath as prefix, therefore making `appPath` the new root url of application
 
 `certificate` object - path to key and cert file used by https
