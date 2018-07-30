@@ -60,7 +60,9 @@ var reportingApp = express();
 app.use('/reporting', reportingApp);
 
 var jsreport = require('jsreport')({
-  express: { app: reportingApp }
+  extensions: {
+    express: { app: reportingApp }
+  }
 });
 
 jsreport.init();
