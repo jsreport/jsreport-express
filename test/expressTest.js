@@ -10,6 +10,7 @@ describe('express', () => {
       .use(require('../')())
       .use(require('jsreport-jsrender')())
       .use(require('jsreport-templates')())
+      .use(require('jsreport-scripts')())
       .use({
         name: 'test',
         directory: __dirname,
@@ -139,6 +140,24 @@ describe('express', () => {
       .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: { 'a': 'foo' }})
       .expect(200, 'foo')
       .expect('Test', 'header')
+  })
+
+  it('should work with scripts', async () => {
+    const res = await jsreport.render({
+      template: {
+        content: 'foo',
+        engine: 'none',
+        recipe: 'html',
+        scripts: [{
+          content: `
+            function beforeRender(req, res) {
+              req.template.content = 'hello'
+            }
+          `
+        }]
+      }
+    })
+    res.content.toString().should.be.eql('hello')
   })
 })
 
