@@ -16,12 +16,12 @@ describe('express', () => {
         directory: __dirname,
         main: function (reporter, definition) {
           reporter.documentStore.registerEntityType('DemoType', {
-            _id: {type: 'Edm.String', key: true},
-            name: {type: 'Edm.String'},
-            secret: {type: 'Edm.String', visible: false}
+            _id: { type: 'Edm.String', key: true },
+            name: { type: 'Edm.String' },
+            secret: { type: 'Edm.String', visible: false }
           })
 
-          reporter.documentStore.registerEntitySet('demos', {entityType: 'jsreport.DemoType', humanReadableKey: '_id'})
+          reporter.documentStore.registerEntitySet('demos', { entityType: 'jsreport.DemoType', humanReadableKey: '_id' })
         }
       })
 
@@ -53,14 +53,14 @@ describe('express', () => {
   it('/api/report should render report', () => {
     return supertest(jsreport.express.app)
       .post('/api/report')
-      .send({template: {content: 'Hey', engine: 'none', recipe: 'html'}})
+      .send({ template: { content: 'Hey', engine: 'none', recipe: 'html' } })
       .expect(200, 'Hey')
   })
 
   it('/api/report should parse data if string and  render report', () => {
     return supertest(jsreport.express.app)
       .post('/api/report')
-      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: { 'a': 'foo' }})
+      .send({ template: { content: '{{:a}}', engine: 'jsrender', recipe: 'html' }, data: { 'a': 'foo' } })
       .expect(200, 'foo')
   })
 
@@ -68,9 +68,9 @@ describe('express', () => {
     return supertest(jsreport.express.app)
       .post('/api/report')
       .send({
-        template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'},
+        template: { content: '{{:a}}', engine: 'jsrender', recipe: 'html' },
         data: { 'a': 'foo' },
-        options: {'Content-Disposition': 'foo'}
+        options: { 'Content-Disposition': 'foo' }
       })
       .expect(200, 'foo')
       .expect('Content-Disposition', 'foo')
@@ -79,7 +79,7 @@ describe('express', () => {
   it('/api/report should not crash when template name has invalid characters', () => {
     return supertest(jsreport.express.app)
       .post('/api/report')
-      .send({template: {content: 'Hey', engine: 'none', recipe: 'html', name: 'čščěš'}})
+      .send({ template: { content: 'Hey', engine: 'none', recipe: 'html', name: 'čščěš' } })
       .expect(200, 'Hey')
   })
 
@@ -144,7 +144,7 @@ describe('express', () => {
 
     return supertest(jsreport.express.app)
       .post('/api/report')
-      .send({template: {content: '{{:a}}', engine: 'jsrender', recipe: 'html'}, data: { 'a': 'foo' }})
+      .send({ template: { content: '{{:a}}', engine: 'jsrender', recipe: 'html' }, data: { 'a': 'foo' } })
       .expect(200, 'foo')
       .expect('Test', 'header')
   })
@@ -224,7 +224,7 @@ describe('express with custom middleware', () => {
 
     return supertest(jsreport.express.app)
       .post('/api/report')
-      .send({template: {content: 'x', engine: 'none', recipe: 'html'}})
+      .send({ template: { content: 'x', engine: 'none', recipe: 'html' } })
       .expect(200, 'hello')
   })
 
@@ -351,7 +351,7 @@ describe('express port', () => {
 
   it('should prefer httpPort over PORT env', async () => {
     process.env.PORT = 7000
-    jsreport = JsReport({httpPort: 8000}).use(require('../')())
+    jsreport = JsReport({ httpPort: 8000 }).use(require('../')())
 
     await jsreport.init()
     jsreport.express.server.address().port.should.be.eql(8000)
