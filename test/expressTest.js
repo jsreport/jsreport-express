@@ -6,7 +6,7 @@ describe('express', () => {
   let jsreport
 
   beforeEach(() => {
-    jsreport = JsReport()
+    jsreport = JsReport({ templatingEngines: { strategy: 'in-process' } })
       .use(require('../')())
       .use(require('jsreport-jsrender')())
       .use(require('jsreport-templates')())
@@ -74,6 +74,13 @@ describe('express', () => {
       })
       .expect(200, 'foo')
       .expect('Content-Disposition', 'foo')
+  })
+
+  it('/api/report should not crash when template name has invalid characters', () => {
+    return supertest(jsreport.express.app)
+      .post('/api/report')
+      .send({template: {content: 'Hey', engine: 'none', recipe: 'html', name: 'čščěš'}})
+      .expect(200, 'Hey')
   })
 
   it('/odata/$metadata should return 200', () => {
