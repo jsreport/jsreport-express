@@ -21,28 +21,28 @@
   },
   "license": "LGPL",
   "dependencies": {
-    "bluebird": "3.5.2",
+    "bluebird": "3.5.3",
     "body-parser": "1.18.3",
     "cookie-parser": "1.4.3",
-    "cors": "2.8.4",
-    "express": "4.16.3",
+    "cors": "2.8.5",
+    "express": "4.16.4",
     "lodash.omit": "4.5.0",
-    "node.extend": "2.0.0",
+    "node.extend": "2.0.1",
     "serve-static": "1.13.2",
-    "simple-odata-server": "1.0.1"
+    "simple-odata-server": "1.1.0"
   },
   "author": "Jan Blaha",
   "devDependencies": {
     "cross-env": "5.2.0",
-    "eslint": "5.5.0",
+    "eslint": "5.9.0",
     "jsreport-core": "2.2.0",
     "jsreport-jsrender": "2.0.0",
-    "jsreport-scripts": "2.0.4",
+    "jsreport-scripts": "2.0.6",
     "jsreport-templates": "2.0.0",
     "mocha": "5.2.0",
     "should": "13.2.3",
     "standard": "12.0.1",
-    "supertest": "3.2.0"
+    "supertest": "3.3.0"
   },
   "engines": {
     "node": ">=8.9"
