@@ -27,7 +27,6 @@
     "cors": "2.8.5",
     "express": "4.16.4",
     "lodash.omit": "4.5.0",
-    "node.extend": "2.0.1",
     "serve-static": "1.13.2",
     "simple-odata-server": "1.1.1"
   },
@@ -35,10 +34,10 @@
   "devDependencies": {
     "cross-env": "5.2.0",
     "eslint": "5.9.0",
-    "jsreport-core": "2.2.0",
+    "jsreport-core": "2.3.0",
     "jsreport-jsrender": "2.0.0",
     "jsreport-scripts": "2.0.7",
-    "jsreport-templates": "2.0.0",
+    "jsreport-templates": "2.1.0",
     "mocha": "5.2.0",
     "should": "13.2.3",
     "standard": "12.0.1",
