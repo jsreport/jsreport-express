@@ -6,7 +6,22 @@ describe('express', () => {
   let jsreport
 
   beforeEach(() => {
-    jsreport = JsReport({ templatingEngines: { strategy: 'in-process' } })
+    const initOptions = {
+      templatingEngines: { strategy: 'in-process' },
+      extensions: {
+        test: {
+          publicProp: 'I am public',
+          publicDeepProp: {
+            foo: 'foo value',
+            bar: 'bar value'
+          },
+          publicArray: [1, 2, 3],
+          privateProp: 'I am private'
+        }
+      }
+    }
+
+    jsreport = JsReport(initOptions)
       .use(require('../')())
       .use(require('jsreport-jsrender')())
       .use(require('jsreport-templates')())
@@ -22,6 +37,38 @@ describe('express', () => {
           })
 
           reporter.documentStore.registerEntitySet('demos', { entityType: 'jsreport.DemoType', humanReadableKey: '_id' })
+        },
+        optionsSchema: {
+          extensions: {
+            test: {
+              type: 'object',
+              properties: {
+                publicProp: {
+                  type: 'string',
+                  $exposeToApi: true
+                },
+                publicDeepProp: {
+                  type: 'object',
+                  properties: {
+                    foo: {
+                      type: 'string',
+                      $exposeToApi: true
+                    },
+                    bar: {
+                      type: 'string'
+                    }
+                  }
+                },
+                publicArray: {
+                  type: 'array',
+                  $exposeToApi: true
+                },
+                privateProp: {
+                  type: 'string'
+                }
+              }
+            }
+          }
         }
       })
 
@@ -42,6 +89,29 @@ describe('express', () => {
     return supertest(jsreport.express.app)
       .get('/api/recipe')
       .expect(200)
+  })
+
+  it('/api/extensions should return 200', () => {
+    return supertest(jsreport.express.app)
+      .get('/api/extensions')
+      .expect(200)
+  })
+
+  it('/api/extensions should return extensions with only exposed options', () => {
+    return supertest(jsreport.express.app)
+      .get('/api/extensions')
+      .expect(200)
+      .expect((res) => {
+        const testExtension = res.body.find((e) => e.name === 'test')
+        const exists = testExtension != null
+
+        exists.should.be.True()
+        testExtension.options.publicProp.should.be.eql('I am public')
+        testExtension.options.publicDeepProp.foo.should.be.eql('foo value')
+        testExtension.options.publicDeepProp.should.not.have.property('bar')
+        testExtension.options.publicArray.should.be.eql([1, 2, 3])
+        testExtension.options.should.not.have.property('privateProp')
+      })
   })
 
   it('/api/version should return a package.json version', () => {
