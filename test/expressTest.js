@@ -37,6 +37,16 @@ describe('express', () => {
           })
 
           reporter.documentStore.registerEntitySet('demos', { entityType: 'jsreport.DemoType', humanReadableKey: '_id' })
+
+          reporter.initializeListeners.add('test', () => {
+            reporter.express.exposeOptionsToApi('test', {
+              publicProp: definition.options.publicProp,
+              publicDeepProp: {
+                foo: definition.options.publicDeepProp.foo
+              },
+              publicArray: definition.options.publicArray
+            })
+          })
         },
         optionsSchema: {
           extensions: {
@@ -44,15 +54,13 @@ describe('express', () => {
               type: 'object',
               properties: {
                 publicProp: {
-                  type: 'string',
-                  $exposeToApi: true
+                  type: 'string'
                 },
                 publicDeepProp: {
                   type: 'object',
                   properties: {
                     foo: {
-                      type: 'string',
-                      $exposeToApi: true
+                      type: 'string'
                     },
                     bar: {
                       type: 'string'
@@ -60,8 +68,7 @@ describe('express', () => {
                   }
                 },
                 publicArray: {
-                  type: 'array',
-                  $exposeToApi: true
+                  type: 'array'
                 },
                 privateProp: {
                   type: 'string'
