@@ -31,12 +31,11 @@ describe('express', () => {
         directory: __dirname,
         main: function (reporter, definition) {
           reporter.documentStore.registerEntityType('DemoType', {
-            _id: { type: 'Edm.String', key: true },
             name: { type: 'Edm.String' },
             secret: { type: 'Edm.String', visible: false }
           })
 
-          reporter.documentStore.registerEntitySet('demos', { entityType: 'jsreport.DemoType', humanReadableKey: '_id' })
+          reporter.documentStore.registerEntitySet('demos', { entityType: 'jsreport.DemoType', humanReadableKey: 'name' })
 
           reporter.initializeListeners.add('test', () => {
             reporter.express.exposeOptionsToApi('test', {
