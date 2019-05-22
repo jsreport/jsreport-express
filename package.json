@@ -21,7 +21,7 @@
   },
   "license": "LGPL",
   "dependencies": {
-    "bluebird": "3.5.3",
+    "bluebird": "3.5.4",
     "body-parser": "1.18.3",
     "cookie-parser": "1.4.4",
     "cors": "2.8.5",
@@ -34,9 +34,9 @@
   "devDependencies": {
     "cross-env": "5.2.0",
     "eslint": "5.9.0",
-    "jsreport-core": "2.4.0",
+    "jsreport-core": "2.5.0",
     "jsreport-jsrender": "2.0.0",
-    "jsreport-scripts": "2.0.9",
+    "jsreport-scripts": "2.0.12",
     "jsreport-templates": "2.2.0",
     "mocha": "5.2.0",
     "should": "13.2.3",
