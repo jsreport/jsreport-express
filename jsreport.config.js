@@ -43,7 +43,10 @@ module.exports = {
             default: false,
             description: 'specifies if incoming request http headers should be exposed as `req.context.http.headers` inside jsreport scripts'
           },
-          renderTimeout: { type: 'number', default: 1200000 }
+          renderTimeout: { type: 'number', default: 1200000 },
+          responseHeaders: {
+            type: 'object'
+          }
         }
       }
     }
