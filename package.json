@@ -1,6 +1,6 @@
 {
   "name": "jsreport-express",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "jsreport extension adding API",
   "scripts": {
     "start": "jsreport-studio-start --httpPort 4800",
