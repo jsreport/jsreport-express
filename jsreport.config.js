@@ -22,9 +22,9 @@ const schemaProperties = {
 }
 
 module.exports = {
-  'name': 'express',
-  'main': 'lib/reporter.express.js',
-  'optionsSchema': {
+  name: 'express',
+  main: 'lib/reporter.express.js',
+  optionsSchema: {
     ...schemaProperties,
     extensions: {
       express: {
